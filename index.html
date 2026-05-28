@@ -6,6 +6,26 @@
   <title>Self Introduction</title>
 
   <style>
+    :root {
+      --bg-color: #fffafc;
+      --card-bg: #ffffff;
+      --header-bg-start: #f8bbd0;
+      --header-bg-end: #e1bee7;
+      --nav-bg: rgba(255, 250, 252, 0.95);
+      --text-color: #5d4037;
+      --heading-color: #4a148c;
+      --heading-sub-color: #6a1b9a;
+      --accent-color: #ff80ab;
+      --skill-bg: #f3e5f5;
+      --skill-text: #4a148c;
+      --work-card-bg: #fffbfd;
+      --work-card-border: #f8bbd0;
+      --work-card-shadow: rgba(248, 187, 208, 0.05);
+      --footer-bg: #fce4ec;
+      --dot-color: #fce4ec;
+      --font-family: "Rounded Mplus 1c", "Hiragino Maru Gothic ProN", "Microsoft YaHei", "Meiryo", sans-serif;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -13,34 +33,80 @@
     }
 
     body {
-      font-family: sans-serif;
+      font-family: var(--font-family);
       line-height: 1.8;
-      background: #f4f7fb;
-      color: #333;
+      background: var(--bg-color);
+      color: var(--text-color);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(var(--dot-color) 1px, transparent 1px);
+      background-size: 20px 20px;
+      opacity: 0.5;
+      z-index: -1;
     }
 
     header {
-      background: #2c3e50;
-      color: white;
-      padding: 60px 20px;
+      background: linear-gradient(135deg, var(--header-bg-start), var(--header-bg-end));
+      color: var(--heading-color);
+      padding: 80px 20px;
       text-align: center;
+      border-radius: 0 0 50px 50px;
+      box-shadow: 0 6px 20px rgba(248, 187, 208, 0.3);
+      position: relative;
+    }
+
+    header::before,
+    header::after {
+      content: "🌸";
+      position: absolute;
+      font-size: 2rem;
+      color: white;
+      opacity: 0.5;
+    }
+
+    header::before {
+      top: 20px;
+      left: 20px;
+    }
+
+    header::after {
+      bottom: 20px;
+      right: 20px;
     }
 
     header h1 {
-      font-size: 2rem;
+      font-size: 2.8rem;
       margin-bottom: 10px;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
     }
 
+    header h1::before { content: "✨"; margin-right: 5px; }
+    header h1::after { content: "✨"; margin-left: 5px; }
+
     header p {
-      opacity: 0.9;
+      opacity: 1;
+      color: var(--heading-sub-color);
+      font-size: 1.2rem;
     }
 
     nav {
-      background: white;
+      background: var(--nav-bg);
       position: sticky;
       top: 0;
-      border-bottom: 1px solid #ddd;
+      border-bottom: none;
       z-index: 10;
+      box-shadow: 0 3px 10px rgba(248, 187, 208, 0.1);
+      border-radius: 0 0 15px 15px;
     }
 
     nav ul {
@@ -48,73 +114,169 @@
       justify-content: center;
       flex-wrap: wrap;
       list-style: none;
+      padding: 10px 0;
     }
 
     nav li {
-      margin: 10px;
+      margin: 5px 15px;
     }
 
     nav a {
       text-decoration: none;
-      color: #2c3e50;
+      color: var(--heading-color);
       font-weight: bold;
+      font-size: 1.2rem;
       transition: 0.3s;
+      padding: 5px 10px;
+      border-radius: 20px;
     }
 
     nav a:hover {
-      color: #3498db;
+      color: white;
+      background: var(--accent-color);
     }
 
     main {
       max-width: 900px;
       margin: auto;
-      padding: 20px;
+      padding: 30px 20px;
     }
 
     section {
-      background: white;
-      margin: 25px 0;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      background: var(--card-bg);
+      margin: 40px 0;
+      padding: 40px;
+      border-radius: 30px;
+      box-shadow: 0 8px 25px rgba(248, 187, 208, 0.1);
+      position: relative;
+    }
+
+    section::before {
+      content: "🌸";
+      position: absolute;
+      top: -15px;
+      left: -15px;
+      font-size: 2.5rem;
+      color: var(--accent-color);
+    }
+
+    section::after {
+      content: "✨";
+      position: absolute;
+      bottom: -10px;
+      right: -10px;
+      font-size: 2rem;
+      color: var(--header-bg-end);
     }
 
     section h2 {
-      margin-bottom: 15px;
-      color: #2c3e50;
-      border-left: 6px solid #3498db;
-      padding-left: 10px;
+      margin-bottom: 25px;
+      color: var(--heading-color);
+      border-left: none;
+      padding-left: 0;
+      display: inline-block;
+      position: relative;
+      font-size: 2.2rem;
+    }
+
+    section h2::before {
+      content: "🌸";
+      margin-right: 5px;
+      color: var(--accent-color);
+    }
+
+    section h2::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--header-bg-start), var(--header-bg-end));
+      border-radius: 2px;
+    }
+
+    section p {
+      font-size: 1.2rem;
     }
 
     .skills-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 10px;
-      margin-top: 15px;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 15px;
+      margin-top: 25px;
     }
 
     .skill {
-      background: #ecf5ff;
-      padding: 12px;
+      background: var(--skill-bg);
+      padding: 20px;
       text-align: center;
-      border-radius: 8px;
+      border-radius: 25px;
       font-weight: bold;
+      color: var(--skill-text);
+      border: 2px solid transparent;
+      transition: 0.3s;
+      font-size: 1.1rem;
+    }
+
+    .skill:hover {
+      background: var(--header-bg-end);
+      border-color: var(--accent-color);
+      transform: scale(1.05);
+      color: white;
     }
 
     .work-card {
-      background: #f8f9fa;
-      padding: 15px;
-      border-radius: 10px;
-      margin-top: 15px;
-      border-left: 5px solid #3498db;
+      background: var(--work-card-bg);
+      padding: 25px;
+      border-radius: 25px;
+      margin-top: 25px;
+      border: 3px solid var(--work-card-border);
+      box-shadow: 0 4px 10px var(--work-card-shadow);
+      transition: 0.3s;
+      position: relative;
+    }
+
+    .work-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 15px rgba(248, 187, 208, 0.1);
+      border-color: var(--accent-color);
+    }
+
+    .work-card::before {
+      content: "🎀";
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 1.5rem;
+      opacity: 0.7;
+    }
+
+    .work-card h3 {
+      margin-bottom: 15px;
+      color: var(--heading-sub-color);
+      font-size: 1.5rem;
+      padding-left: 30px;
+    }
+
+    .work-card h3::after { content: "✨"; margin-left: 5px; color: var(--header-bg-end); }
+
+    .work-card p {
+      font-size: 1.1rem;
     }
 
     footer {
       text-align: center;
-      padding: 20px;
-      color: #666;
-      font-size: 0.9rem;
+      padding: 40px;
+      color: #888;
+      font-size: 1.1rem;
+      background: var(--footer-bg);
+      border-top: none;
+      border-radius: 50px 50px 0 0;
     }
+
+    footer::before { content: "🌸"; margin-right: 5px; }
+    footer::after { content: "🌸"; margin-left: 5px; }
 
     .fade {
       opacity: 0;
@@ -129,15 +291,82 @@
 
     @media (max-width: 600px) {
       header {
-        padding: 40px 15px;
+        padding: 50px 15px;
+        border-radius: 0 0 30px 30px;
       }
 
       header h1 {
-        font-size: 1.6rem;
+        font-size: 2.2rem;
+      }
+
+      header p {
+        font-size: 1rem;
+      }
+
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      nav li {
+        margin: 5px 0;
+      }
+
+      nav a {
+        font-size: 1rem;
+        padding: 5px 15px;
+      }
+
+      main {
+        padding: 20px 10px;
       }
 
       section {
+        padding: 25px;
+        margin: 25px 0;
+        border-radius: 20px;
+      }
+
+      section h2 {
+        font-size: 1.8rem;
+      }
+
+      section p {
+        font-size: 1rem;
+      }
+
+      .skills-list {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 10px;
+      }
+
+      .skill {
+        padding: 12px;
+        font-size: 0.9rem;
+        border-radius: 15px;
+      }
+
+      .work-card {
         padding: 18px;
+        border-radius: 15px;
+        border-width: 2px;
+      }
+
+      .work-card h3 {
+        font-size: 1.3rem;
+        padding-left: 25px;
+      }
+
+      .work-card h3::after { font-size: 1rem; }
+
+      .work-card p {
+        font-size: 0.9rem;
+      }
+
+      footer {
+        padding: 25px;
+        font-size: 1rem;
+        border-radius: 30px 30px 0 0;
       }
     }
   </style>
@@ -168,10 +397,10 @@
         授業では、Web制作、組込みシステム、データ分析など幅広い分野に取り組んでいます。
       </p>
 
-      <p style="margin-top: 12px;">
+      <p style="margin-top: 15px; font-size: 1.1rem;">
         特に関心を持っている分野は、
         「ソフトウェア開発」や「ユーザーが使いやすいシステム設計」です。
-        最近はHTML/CSS/JavaScriptを使ったWebページ制作にも興味があります。
+        最近はHTML/CSS/JavaScriptを使ったWebページ制作にも興味があります。🌸
       </p>
     </section>
 
@@ -224,9 +453,9 @@
         「どのように設計するか」を考えることの重要性を学びました。
       </p>
 
-      <p style="margin-top: 12px;">
+      <p style="margin-top: 15px; font-size: 1.1rem;">
         今後は、Web開発やソフトウェア設計についてさらに学習し、
-        より実用的なシステムを作れるようになりたいと考えています。
+        より実用的なシステムを作れるようになりたいと考えています。✨
       </p>
     </section>
 
