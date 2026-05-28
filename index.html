@@ -1,7 +1,310 @@
-<!doctype html>
-<meta charset=
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #212529;
+            --primary-color: #4a6fa5;
+            --secondary-color: #166088;
+            --card-bg: #ffffff;
+            --border-color: #e9ecef;
+        }
 
-"utf-8">
-<title>自己紹介</title>
-<h1>自己紹介</h1>
-<p>授業で作成したページです。</p>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #121212;
+                --text-color: #e0e0e0;
+                --primary-color: #64dfdf;
+                --secondary-color: #48cae4;
+                --card-bg: #1e1e1e;
+                --border-color: #333333;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        main {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 5rem 1rem 2rem 1rem;
+        }
+
+        section {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 30px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        .about-content {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-card {
+            background-color: var(--card-bg);
+            padding: 1rem;
+            text-align: center;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            font-weight: 500;
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .work-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+
+        .work-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .work-img-placeholder {
+            height: 160px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .work-info {
+            padding: 1rem;
+        }
+
+        .work-info h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .work-info p {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        .reflection-content {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.8rem;
+            color: var(--text-color);
+            opacity: 0.6;
+        }
+
+        .top-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+            main {
+                padding-top: 6.5rem;
+            }
+            section {
+                padding: 2rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#works">Works</a></li>
+                <li><a href="#reflection">Reflection</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about">
+            <h2>About</h2>
+            <div class="about-content">
+                <p>こんにちは。こちらは私の自己紹介用のポートフォリオWebサイトです。シンプルかつ実用的なモノづくりを意識して日々活動をしています。新しい技術に触れることや、課題を解決するための仕組みを考えることが好きです。</p>
+                <br>
+                <p>プライバシー保護のため詳細な経歴は伏せておりますが、Web関連の技術を中心に幅広く学習を進めています。どうぞよろしくお願いいたします。</p>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">HTML5 / CSS3</div>
+                <div class="skill-card">JavaScript</div>
+                <div class="skill-card">Responsive Design</div>
+                <div class="skill-card">UI/UX Basic</div>
+                <div class="skill-card">Git / GitHub</div>
+                <div class="skill-card">Problem Solving</div>
+            </div>
+        </section>
+
+        <section id="works">
+            <h2>Works</h2>
+            <div class="works-grid">
+                <div class="work-card">
+                    <div class="work-img-placeholder">Project 01</div>
+                    <div class="work-info">
+                        <h3>静的Webサイト</h3>
+                        <p>HTMLとCSSのみを用いて構築した、軽量で視認性の高いWebサイト。セマンティックなマークアップを意識しました。</p>
+                    </div>
+                </div>
+                <div class="work-card">
+                    <div class="work-img-placeholder">Project 02</div>
+                    <div class="work-info">
+                        <h3>インタラクティブツール</h3>
+                        <p>JavaScriptを活用し、ユーザーの操作に応じてリアルタイムに表示が切り替わる、利便性を追求したWebアプリケーションです。</p>
+                    </div>
+                </div>
+                <div class="work-card">
+                    <div class="work-img-placeholder">Project 03</div>
+                    <div class="work-info">
+                        <h3>レスポンシブテンプレート</h3>
+                        <p>スマートフォン、タブレット、PCのすべての端末で最適なレイアウトが保持される汎用的なコンポーネント集です。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="reflection">
+            <h2>Reflection</h2>
+            <div class="reflection-content">
+                <p><strong>これまでの振り返りと今後の展望：</strong></p>
+                <p>これまでは、基盤となるWeb標準技術（HTML/CSS/JavaScript）の習得に注力してきました。外部のリソースに頼りすぎず、1つのファイル内で完結する設計を行うことで、パフォーマンスや構造の理解がより深まったと感じています。</p>
+                <br>
+                <p>今後は、アクセシビリティの向上や非同期処理を取り入れた高度
